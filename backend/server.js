@@ -104,14 +104,14 @@ const { getPublicPlatformStats } = require('./controllers/donorController');
 app.get('/api/stats/public', getPublicPlatformStats);
 
 // Serve frontend static assets if the directory exists (enables unified single-host deployment)
-const frontendDir = path.join(__dirname, '..', 'frontend');
+const frontendDir = path.join(__dirname, 'frontend');
 if (fs.existsSync(frontendDir)) {
   app.use(express.static(frontendDir));
 }
 
 // Root informational endpoint or landing page
 app.get('/', (req, res) => {
-  const indexHtmlPath = path.join(__dirname, '..', 'frontend', 'index.html');
+  const indexHtmlPath = path.join(__dirname, 'frontend', 'index.html');
   if (fs.existsSync(indexHtmlPath)) {
     return res.sendFile(indexHtmlPath);
   }
@@ -129,7 +129,7 @@ app.use((req, res) => {
       message: `API route not found: ${req.method} ${req.originalUrl}`
     });
   }
-  const indexHtmlPath = path.join(__dirname, '..', 'frontend', 'index.html');
+  const indexHtmlPath = path.join(__dirname, 'frontend', 'index.html');
   if (fs.existsSync(indexHtmlPath)) {
     return res.status(404).sendFile(indexHtmlPath);
   }
