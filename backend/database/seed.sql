@@ -1,0 +1,3 @@
+-- Authoritative copy: See database/seed.sql at project root
+-- Master Seed Data Script (MySQL 8.0+)
+-- Run: mysql -u root -p < database/seed.sql

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emergency Blood Request – BloodConnect</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header id="main-header"></header>
+
+  <main class="auth-container wide">
+    <div class="card">
+      <h1 class="page-title">🆘 Emergency Blood Request</h1>
+      <p class="text-muted">
+        Fill in the details below. The hospital and attending doctor will be cross-verified
+        against our registry. Your request will be dispatched to compatible donors in the area.
+      </p>
+
+      <form id="request-form" novalidate enctype="multipart/form-data">
+
+        <!-- Patient Info -->
+        <section class="form-section">
+          <h2 class="form-section-title">Patient Information</h2>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="patient_name">Patient Name</label>
+              <input type="text" id="patient_name" class="form-control"
+                     placeholder="Full name of patient" required>
+              <span class="form-error" id="err-patient_name"></span>
+            </div>
+            <div class="form-group">
+              <label for="blood_group_needed">Blood Group Needed</label>
+              <select id="blood_group_needed" class="form-control" required>
+                <option value="">— Select —</option>
+              </select>
+              <span class="form-error" id="err-blood_group_needed"></span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="units_needed">Units Needed</label>
+              <input type="number" id="units_needed" class="form-control"
+                     min="1" max="20" value="1" required>
+              <span class="form-error" id="err-units_needed"></span>
+            </div>
+            <div class="form-group">
+              <label for="urgency_level">Urgency</label>
+              <select id="urgency_level" class="form-control" required>
+                <option value="critical">🔴 Critical — within hours</option>
+                <option value="high">🟠 High — within 24 hrs</option>
+                <option value="normal" selected>🟡 Normal — scheduled</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="required_by">Required By (date)</label>
+            <input type="date" id="required_by" class="form-control" required>
+            <span class="form-error" id="err-required_by"></span>
+          </div>
+        </section>
+
+        <!-- Hospital Info -->
+        <section class="form-section">
+          <h2 class="form-section-title">Hospital &amp; Doctor (Legal Cross-Check)</h2>
+          <p class="form-hint">Start typing to search the verified registry.</p>
+
+          <div class="form-group">
+            <label for="hospital-search">Hospital Name</label>
+            <input type="text" id="hospital-search" class="form-control"
+                   placeholder="Search hospital…" autocomplete="off">
+            <div id="hospital-dropdown" class="autocomplete-dropdown hidden"></div>
+            <input type="hidden" id="hospital_name" name="hospital_name">
+            <span class="form-error" id="err-hospital_name"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="doctor-search">Attending Doctor Name</label>
+            <input type="text" id="doctor-search" class="form-control"
+                   placeholder="Search doctor…" autocomplete="off">
+            <div id="doctor-dropdown" class="autocomplete-dropdown hidden"></div>
+            <input type="hidden" id="doctor_name" name="doctor_name">
+            <span class="form-error" id="err-doctor_name"></span>
+          </div>
+        </section>
+
+        <!-- Location -->
+        <section class="form-section">
+          <h2 class="form-section-title">Location</h2>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="req-latitude">Latitude</label>
+              <input type="number" id="req-latitude" class="form-control"
+                     step="any" placeholder="19.0760" required>
+              <span class="form-error" id="err-latitude"></span>
+            </div>
+            <div class="form-group">
+              <label for="req-longitude">Longitude</label>
+              <input type="number" id="req-longitude" class="form-control"
+                     step="any" placeholder="72.8777" required>
+            </div>
+          </div>
+          <button type="button" class="btn btn-outline btn-sm" id="btn-locate">
+            📍 Use My Location
+          </button>
+        </section>
+
+        <!-- Prescription Upload -->
+        <section class="form-section">
+          <h2 class="form-section-title">Prescription (Optional)</h2>
+          <div class="form-group">
+            <label for="prescription">Upload Prescription (PDF/JPG/PNG, max 5 MB)</label>
+            <input type="file" id="prescription" class="form-control"
+                   accept=".pdf,.jpg,.jpeg,.png">
+          </div>
+        </section>
+
+        <!-- Notes -->
+        <div class="form-group">
+          <label for="additional_notes">Additional Notes</label>
+          <textarea id="additional_notes" class="form-control" rows="3"
+                    placeholder="Any relevant medical context…"></textarea>
+        </div>
+
+        <button type="submit" id="btn-submit" class="btn btn-danger btn-full">
+          🆘 Submit Emergency Request
+        </button>
+      </form>
+    </div>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/seeker-request.js"></script>
+</body>
+</html>

@@ -1,0 +1,3 @@
+-- Authoritative copy: See database/schema.sql at project root
+-- Master Database DDL - Fresh Install Schema (MySQL 8.0+)
+-- Run: mysql -u root -p < database/schema.sql

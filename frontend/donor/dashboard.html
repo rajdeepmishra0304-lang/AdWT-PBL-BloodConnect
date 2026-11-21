@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donor Dashboard – BloodConnect</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <header id="main-header"></header>
+
+  <main id="app" class="dashboard-main">
+
+    <!-- ── Profile & Availability Banner ───────────────────────────── -->
+    <section class="dashboard-hero card">
+      <div class="profile-info">
+        <div class="avatar" id="donor-avatar">🩸</div>
+        <div>
+          <h1 id="donor-name">Loading…</h1>
+          <p id="donor-blood" class="blood-badge"></p>
+          <p id="donor-city" class="text-muted"></p>
+        </div>
+      </div>
+
+      <div class="availability-panel">
+        <label class="toggle-label">
+          <span id="availability-label">Availability</span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="availability-toggle">
+            <span class="toggle-slider"></span>
+          </label>
+        </label>
+        <p id="cooldown-msg" class="cooldown-msg hidden"></p>
+      </div>
+    </section>
+
+    <!-- ── Stats Row ─────────────────────────────────────────────── -->
+    <div class="stats-row">
+      <div class="metric-card">
+        <span class="metric-value" id="stat-total">—</span>
+        <span class="metric-label">Total Donations</span>
+      </div>
+      <div class="metric-card">
+        <span class="metric-value" id="stat-pending">—</span>
+        <span class="metric-label">Pending Alerts</span>
+      </div>
+      <div class="metric-card">
+        <span class="metric-value" id="stat-last">—</span>
+        <span class="metric-label">Last Donated</span>
+      </div>
+    </div>
+
+    <!-- ── Verification Status ───────────────────────────────────── -->
+    <div id="verification-banner" class="alert-banner hidden"></div>
+
+    <!-- ── Emergency Alerts ─────────────────────────────────────── -->
+    <section class="card">
+      <div class="section-header">
+        <h2>🚨 Emergency Alerts</h2>
+        <span id="alerts-count" class="badge badge-danger">0</span>
+      </div>
+      <p class="text-muted">Nearby seekers who need your blood group. Alerts refresh every 15 seconds.</p>
+
+      <div id="alerts-container">
+        <div class="empty-state" id="no-alerts">
+          <p>✅ No active alerts. You're good to go!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Quick Links ───────────────────────────────────────────── -->
+    <div class="quick-links">
+      <a href="../donor/history.html" class="btn btn-outline">📋 View Donation History</a>
+    </div>
+
+  </main>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/donor-dashboard.js"></script>
+</body>
+</html>

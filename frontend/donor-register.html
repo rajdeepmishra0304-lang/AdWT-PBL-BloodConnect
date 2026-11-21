@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donor Onboarding – BloodConnect</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header id="main-header"></header>
+
+  <main class="auth-container wide">
+    <div class="card donor-onboard-card">
+      <div class="auth-logo">🩸 BloodConnect</div>
+      <h1 class="auth-title">Donor Onboarding</h1>
+      <p class="auth-subtitle text-muted">Complete your profile to start saving lives</p>
+
+      <!-- Step indicator -->
+      <div class="step-indicator" id="step-indicator">
+        <div class="step-dot active" data-step="1">1</div>
+        <div class="step-line"></div>
+        <div class="step-dot" data-step="2">2</div>
+        <div class="step-line"></div>
+        <div class="step-dot" data-step="3">3</div>
+      </div>
+
+      <form id="onboard-form" novalidate enctype="multipart/form-data">
+
+        <!-- ══ STEP 1: Personal & Health ══════════════════════════════ -->
+        <fieldset class="form-step active" id="step-1">
+          <legend>Step 1 — Personal &amp; Health Info</legend>
+
+          <div class="form-group">
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" class="form-control" required>
+            <span class="form-hint">Must be 18–65 years old</span>
+            <span class="form-error" id="err-dob"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="blood_group">Blood Group</label>
+            <select id="blood_group" class="form-control" required>
+              <option value="">— Select —</option>
+            </select>
+            <span class="form-error" id="err-blood_group"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="weight_kg">Weight (kg)</label>
+            <input type="number" id="weight_kg" class="form-control"
+                   min="50" max="200" step="0.1" placeholder="e.g. 68.5" required>
+            <span class="form-hint">Minimum 50 kg required by NBTC guidelines</span>
+            <span class="form-error" id="err-weight_kg"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="medical_conditions">Medical Conditions (optional)</label>
+            <textarea id="medical_conditions" class="form-control" rows="3"
+                      placeholder="Any chronic conditions, allergies, medications…"></textarea>
+          </div>
+
+          <div class="step-nav">
+            <button type="button" class="btn btn-primary" onclick="nextStep(2)">Next →</button>
+          </div>
+        </fieldset>
+
+        <!-- ══ STEP 2: Location ═══════════════════════════════════════ -->
+        <fieldset class="form-step" id="step-2">
+          <legend>Step 2 — Location</legend>
+
+          <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" id="city" class="form-control"
+                   placeholder="e.g. Mumbai" required>
+            <span class="form-error" id="err-city"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="state">State</label>
+            <input type="text" id="state" class="form-control"
+                   placeholder="e.g. Maharashtra" required>
+            <span class="form-error" id="err-state"></span>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="latitude">Latitude</label>
+              <input type="number" id="latitude" class="form-control"
+                     step="any" placeholder="19.0760" required>
+              <span class="form-error" id="err-latitude"></span>
+            </div>
+            <div class="form-group">
+              <label for="longitude">Longitude</label>
+              <input type="number" id="longitude" class="form-control"
+                     step="any" placeholder="72.8777" required>
+              <span class="form-error" id="err-longitude"></span>
+            </div>
+          </div>
+
+          <button type="button" class="btn btn-outline btn-sm" id="btn-locate">
+            📍 Use My Location
+          </button>
+
+          <div class="step-nav">
+            <button type="button" class="btn btn-outline" onclick="prevStep(1)">← Back</button>
+            <button type="button" class="btn btn-primary" onclick="nextStep(3)">Next →</button>
+          </div>
+        </fieldset>
+
+        <!-- ══ STEP 3: Documents & Declaration ═══════════════════════ -->
+        <fieldset class="form-step" id="step-3">
+          <legend>Step 3 — Documents &amp; Declaration</legend>
+
+          <div class="form-group">
+            <label for="aadhar_number">Aadhar Number</label>
+            <input type="text" id="aadhar_number" class="form-control"
+                   placeholder="12-digit Aadhar" maxlength="12" required>
+            <span class="form-hint">Stored masked (last 4 digits visible only)</span>
+            <span class="form-error" id="err-aadhar_number"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="id_proof">ID Proof (PDF, JPG, PNG — max 5 MB)</label>
+            <input type="file" id="id_proof" class="form-control"
+                   accept=".pdf,.jpg,.jpeg,.png" required>
+            <span class="form-error" id="err-id_proof"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="medical_record">Medical Record (PDF, JPG, PNG — max 5 MB)</label>
+            <input type="file" id="medical_record" class="form-control"
+                   accept=".pdf,.jpg,.jpeg,.png" required>
+            <span class="form-error" id="err-medical_record"></span>
+          </div>
+
+          <div class="form-group">
+            <label class="checkbox-label">
+              <input type="checkbox" id="background_check_consent" required>
+              <span>I consent to a background check and confirm all information provided is accurate. 
+              I understand providing false information may result in legal action.</span>
+            </label>
+            <span class="form-error" id="err-consent"></span>
+          </div>
+
+          <div class="step-nav">
+            <button type="button" class="btn btn-outline" onclick="prevStep(2)">← Back</button>
+            <button type="submit" id="btn-submit" class="btn btn-danger">
+              Submit for Verification
+            </button>
+          </div>
+        </fieldset>
+
+      </form>
+    </div>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/donor-register.js"></script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Facility Registry – BloodConnect</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <header id="main-header"></header>
+
+  <main class="dashboard-main">
+
+    <div class="page-header">
+      <h1>🏥 Facility Registry</h1>
+      <a href="../admin/dashboard.html" class="btn btn-outline btn-sm">← Dashboard</a>
+    </div>
+
+    <!-- ── Add Facility Form ──────────────────────────────────────── -->
+    <section class="card">
+      <h2>Add New Facility</h2>
+      <form id="add-facility-form" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="f-name">Name</label>
+            <input type="text" id="f-name" class="form-control" placeholder="Hospital / Doctor name" required>
+            <span class="form-error" id="err-f-name"></span>
+          </div>
+          <div class="form-group">
+            <label for="f-type">Type</label>
+            <select id="f-type" class="form-control" required>
+              <option value="hospital">🏥 Hospital</option>
+              <option value="doctor">👨‍⚕️ Doctor</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="f-city">City</label>
+            <input type="text" id="f-city" class="form-control" placeholder="City" required>
+          </div>
+          <div class="form-group">
+            <label for="f-state">State</label>
+            <input type="text" id="f-state" class="form-control" placeholder="State">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="f-reg">Registration Number</label>
+            <input type="text" id="f-reg" class="form-control" placeholder="MCI / Hospital reg no.">
+          </div>
+          <div class="form-group">
+            <label for="f-phone">Contact Phone</label>
+            <input type="text" id="f-phone" class="form-control" placeholder="Phone number">
+          </div>
+        </div>
+        <button type="submit" id="btn-add-facility" class="btn btn-primary">
+          ➕ Add Facility
+        </button>
+      </form>
+    </section>
+
+    <!-- ── Facility List ──────────────────────────────────────────── -->
+    <section class="card">
+      <div class="section-header">
+        <h2>All Facilities</h2>
+        <input type="text" id="facility-filter" class="form-control" style="max-width:280px"
+               placeholder="Filter by name or city…">
+      </div>
+      <div id="facilities-loading" class="loading-state">Loading…</div>
+      <div class="table-responsive hidden" id="facilities-table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Type</th>
+              <th>Name</th>
+              <th>City</th>
+              <th>Reg Number</th>
+              <th>Phone</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="facilities-tbody"></tbody>
+        </table>
+
+        <!-- Pagination Controls -->
+        <div id="pagination-controls" class="pagination-bar hidden" style="display:flex; justify-content:space-between; align-items:center; margin-top:1.25rem; padding-top:1rem; border-top:1px solid var(--border-subtle);">
+          <button id="btn-prev-page" class="btn btn-outline btn-sm">← Previous</button>
+          <span id="page-indicator" style="font-size:0.875rem; font-weight:600; color:var(--text-muted);">Page 1 of 1</span>
+          <button id="btn-next-page" class="btn btn-outline btn-sm">Next →</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/admin-registry.js"></script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register – BloodConnect</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="auth-page">
+
+  <header id="main-header"></header>
+
+  <main class="auth-container">
+    <div class="auth-card card">
+      <div class="auth-logo">🩸 BloodConnect</div>
+      <h1 class="auth-title">Create Account</h1>
+      <p class="auth-subtitle text-muted">Join the BloodConnect network</p>
+
+      <form id="register-form" novalidate>
+
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" class="form-control"
+                 placeholder="Your full name" required>
+          <span class="form-error" id="err-name"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" class="form-control"
+                 placeholder="you@example.com" required autocomplete="email">
+          <span class="form-error" id="err-email"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" class="form-control"
+                 placeholder="10-digit mobile number" maxlength="10" required>
+          <span class="form-error" id="err-phone"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" class="form-control"
+                 placeholder="Min 6 characters" required autocomplete="new-password">
+          <span class="form-error" id="err-password"></span>
+        </div>
+
+        <!-- Role selector -->
+        <div class="form-group">
+          <label>I am registering as</label>
+          <div class="role-selector">
+            <label class="role-option">
+              <input type="radio" name="role" value="donor" required>
+              <span>🩸 Blood Donor</span>
+            </label>
+            <label class="role-option">
+              <input type="radio" name="role" value="seeker">
+              <span>🏥 Patient / Seeker</span>
+            </label>
+            <label class="role-option">
+              <input type="radio" name="role" value="hospital">
+              <span>🏨 Hospital / Clinic</span>
+            </label>
+          </div>
+          <span class="form-error" id="err-role"></span>
+        </div>
+
+        <button type="submit" id="btn-register" class="btn btn-primary btn-full">
+          Create Account
+        </button>
+
+        <div class="auth-footer">
+          <span>Already have an account?</span>
+          <a href="login.html">Sign in</a>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/register.js"></script>
+</body>
+</html>

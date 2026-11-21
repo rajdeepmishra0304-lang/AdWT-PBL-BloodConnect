@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard – BloodConnect</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <header id="main-header"></header>
+
+  <main class="dashboard-main">
+
+    <div class="page-header">
+      <h1>⚙️ Admin Control Center</h1>
+      <a href="../admin/registry.html" class="btn btn-outline btn-sm">🏥 Facility Registry</a>
+    </div>
+
+    <!-- ── Stats Row ─────────────────────────────────────────────── -->
+    <div class="stats-row" id="stats-row">
+      <div class="metric-card"><span class="metric-value" id="s-donors">—</span><span class="metric-label">Verified Donors</span></div>
+      <div class="metric-card"><span class="metric-value" id="s-available">—</span><span class="metric-label">Available Now</span></div>
+      <div class="metric-card"><span class="metric-value" id="s-requests">—</span><span class="metric-label">Total Requests</span></div>
+      <div class="metric-card"><span class="metric-value" id="s-fulfilled">—</span><span class="metric-label">Fulfilled</span></div>
+      <div class="metric-card"><span class="metric-value" id="s-facilities">—</span><span class="metric-label">Facilities</span></div>
+      <div class="metric-card"><span class="metric-value" id="s-pending-donors">—</span><span class="metric-label">Pending Donors</span></div>
+    </div>
+
+    <!-- ── Pending Donor Verifications ───────────────────────────── -->
+    <section class="card">
+      <h2>🧾 Pending Donor Verifications</h2>
+      <p class="text-muted">Review Aadhar, ID proof, and medical documents before approving.</p>
+      <div id="pending-donors-container">
+        <div class="loading-state" id="donors-loading">Loading…</div>
+      </div>
+    </section>
+
+    <!-- ── Pending Request Audits ────────────────────────────────── -->
+    <section class="card">
+      <h2>🔍 Pending Request Audits</h2>
+      <p class="text-muted">Blood requests that need manual legal cross-check.</p>
+      <div id="pending-requests-container">
+        <div class="loading-state" id="requests-loading">Loading…</div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>

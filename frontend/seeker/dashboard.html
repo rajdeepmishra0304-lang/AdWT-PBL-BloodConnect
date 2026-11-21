@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seeker Dashboard – BloodConnect</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <header id="main-header"></header>
+
+  <main class="dashboard-main">
+
+    <!-- ── Greeting ──────────────────────────────────────────────── -->
+    <section class="dashboard-hero card">
+      <div class="profile-info">
+        <div class="avatar">🏥</div>
+        <div>
+          <h1 id="seeker-name">Loading…</h1>
+          <p class="text-muted">Blood Seeker Dashboard</p>
+        </div>
+      </div>
+      <a href="../seeker-request.html" class="btn btn-danger">🆘 New Request</a>
+    </section>
+
+    <!-- ── Active Request Dispatch Radar ─────────────────────────── -->
+    <section class="card" id="active-request-panel">
+      <h2>📡 Live Dispatch Radar</h2>
+      <p class="text-muted">
+        Select one of your active requests below to track donor dispatch status in real-time.
+      </p>
+
+      <!-- Request selector -->
+      <div class="form-group">
+        <label for="request-selector">Active Request</label>
+        <select id="request-selector" class="form-control">
+          <option value="">— Select a request —</option>
+        </select>
+      </div>
+
+      <!-- Dispatch control -->
+      <div id="dispatch-panel" class="hidden">
+        <div class="dispatch-status-row">
+          <div id="dispatch-status-msg" class="dispatch-status-label">Select a request to begin.</div>
+          <button id="btn-dispatch" class="btn btn-primary hidden" onclick="dispatchRequest()">
+            📡 Dispatch Donors
+          </button>
+        </div>
+
+        <!-- Donor cards (flip-reveal on accept) -->
+        <div id="dispatch-donors-list" class="dispatch-donors-grid"></div>
+
+        <!-- Complete donation button (appears after acceptance) -->
+        <div id="complete-panel" class="hidden">
+          <h3>✅ Mark Donation Complete</h3>
+          <p class="text-muted">Once the donor has physically donated, record the completion below.</p>
+          <div id="accepted-donors-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── My Requests (mini) ─────────────────────────────────────── -->
+    <section class="card">
+      <div class="section-header">
+        <h2>📋 My Requests</h2>
+        <a href="../seeker/my-requests.html" class="btn btn-outline btn-sm">View All</a>
+      </div>
+      <div id="requests-mini-container">
+        <div class="loading-state" id="requests-loading">Loading…</div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/seeker-dashboard.js"></script>
+</body>
+</html>
